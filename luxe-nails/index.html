@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luxe Nail Lounge — Milwaukee, WI</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blush: #f9e8e8;
+      --rose: #c8788c;
+      --deep: #8b3a52;
+      --ink: #2a1a20;
+      --cream: #fffaf8;
+      --muted: #9e7e88;
+      --line: rgba(200,120,140,0.15);
+    }
+
+    body { font-family: 'Georgia', serif; background: var(--cream); color: var(--ink); }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 48px;
+      background: rgba(255,250,248,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand span { font-size: 1.15rem; font-weight: 400; color: var(--deep); letter-spacing: 0.12em; font-style: italic; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { color: var(--ink); text-decoration: none; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; transition: opacity 0.2s; font-family: sans-serif; }
+    .nav-links a:hover { opacity: 1; }
+    .btn-book-nav {
+      background: var(--rose); color: #fff; padding: 9px 22px; border-radius: 24px;
+      font-family: sans-serif; font-size: 0.8rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+      opacity: 1 !important; transition: background 0.2s;
+    }
+    .btn-book-nav:hover { background: var(--deep); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 120px 48px 80px;
+      background: linear-gradient(135deg, #fdf0f3 0%, #fce8f0 50%, #f5e0ea 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '✦  ✦  ✦';
+      position: absolute; bottom: 40px; right: 60px;
+      font-size: 1.2rem; color: rgba(200,120,140,0.25); letter-spacing: 1.5em;
+    }
+    .hero-content { max-width: 600px; }
+    .eyebrow {
+      font-family: sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 400;
+      line-height: 1.1; color: var(--deep); margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: italic; color: var(--rose); }
+    .hero p {
+      font-family: sans-serif; font-size: 1rem; line-height: 1.75;
+      color: var(--muted); margin-bottom: 36px; max-width: 460px;
+    }
+    .cta-group { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--rose); color: #fff;
+      padding: 14px 32px; border-radius: 28px;
+      font-family: sans-serif; font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--deep); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid var(--rose); color: var(--rose);
+      padding: 14px 32px; border-radius: 28px;
+      font-family: sans-serif; font-size: 0.88rem; font-weight: 600;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-outline:hover { background: var(--rose); color: #fff; }
+
+    /* ── SERVICES ── */
+    .services { padding: 88px 48px; background: var(--cream); }
+    .section-label {
+      font-family: sans-serif; font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose);
+      margin-bottom: 10px;
+    }
+    .section-title { font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--deep); margin-bottom: 48px; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px; max-width: 1000px;
+    }
+    .svc {
+      padding: 28px 24px; border-radius: 12px;
+      background: linear-gradient(135deg, #fdf5f7, #fce8ef);
+      border: 1px solid var(--line);
+    }
+    .svc-icon { font-size: 1.4rem; margin-bottom: 12px; }
+    .svc h3 { font-size: 1rem; margin-bottom: 6px; color: var(--ink); }
+    .svc p { font-family: sans-serif; font-size: 0.82rem; color: var(--muted); line-height: 1.6; margin-bottom: 12px; }
+    .svc-price { font-family: sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--rose); }
+
+    /* ── GALLERY STRIP ── */
+    .gallery-strip {
+      display: flex; gap: 0; overflow: hidden; height: 220px;
+    }
+    .gallery-strip div {
+      flex: 1; background-color: var(--blush);
+      background-size: cover; background-position: center;
+    }
+    .gallery-strip .g1 { background-color: #f5d0d8; }
+    .gallery-strip .g2 { background-color: #f0c8d4; }
+    .gallery-strip .g3 { background-color: #eabecf; }
+    .gallery-strip .g4 { background-color: #e4b2c9; }
+    .gallery-strip .g5 { background-color: #dda6c2; }
+
+    /* ── TEAM ── */
+    .team { padding: 88px 48px; background: #fdf0f3; text-align: center; }
+    .team h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); color: var(--deep); margin-bottom: 6px; }
+    .team-sub { font-family: sans-serif; font-size: 0.82rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 48px; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; max-width: 720px; margin: 0 auto 40px; }
+    .nail-tech {
+      background: var(--cream); border-radius: 12px; padding: 28px 20px;
+      border: 1px solid var(--line);
+    }
+    .nail-avatar {
+      width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 14px;
+      background: linear-gradient(135deg, var(--rose), var(--deep));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+    }
+    .nail-tech h3 { font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+    .nail-tech span { font-family: sans-serif; font-size: 0.78rem; color: var(--muted); }
+
+    /* ── BOOK CTA ── */
+    .book-cta {
+      padding: 88px 48px; text-align: center;
+      background: linear-gradient(135deg, var(--deep), #6e2a42);
+      color: #fff;
+    }
+    .book-cta h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); margin-bottom: 12px; }
+    .book-cta p { font-family: sans-serif; font-size: 1rem; opacity: 0.8; margin-bottom: 32px; line-height: 1.7; }
+    .btn-cream {
+      background: var(--cream); color: var(--deep);
+      padding: 14px 36px; border-radius: 28px;
+      font-family: sans-serif; font-size: 0.88rem; font-weight: 700;
+      letter-spacing: 0.06em; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-cream:hover { background: var(--blush); }
+
+    /* ── INFO ── */
+    .info { padding: 64px 48px; background: var(--cream); }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; max-width: 800px; }
+    .info h3 { font-size: 0.7rem; font-family: sans-serif; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 14px; }
+    .info p, .info li { font-family: sans-serif; font-size: 0.87rem; color: var(--muted); line-height: 1.85; }
+    .info ul { list-style: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: rgba(255,250,248,0.5);
+      padding: 24px 48px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+    }
+    footer p { font-family: sans-serif; font-size: 0.78rem; }
+    .staff-link { font-family: sans-serif; font-size: 0.78rem; color: rgba(255,250,248,0.4); text-decoration: none; transition: color 0.2s; }
+    .staff-link:hover { color: var(--rose); }
+
+    @media (max-width: 640px) {
+      nav { padding: 14px 20px; }
+      .hero, .services, .team, .book-cta, .info { padding: 64px 20px; }
+      footer { padding: 20px; }
+      .gallery-strip { height: 140px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="brand" href="/"><span>Luxe Nail Lounge</span></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#team">Team</a>
+      <a href="#info">Hours</a>
+      <a class="btn-book-nav" href="https://chairmanagement.com/#/book?shop=SHOP_ID_PLACEHOLDER">Book Now</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="eyebrow">Nail Lounge · Wauwatosa, WI</p>
+      <h1>Your Nails,<br /><em>Perfectly Done.</em></h1>
+      <p>A full-service nail lounge offering gel, acrylic, dip powder, and classic manicures in a calm, luxurious setting.</p>
+      <div class="cta-group">
+        <a class="btn-primary" href="https://chairmanagement.com/#/book?shop=SHOP_ID_PLACEHOLDER">Book an Appointment</a>
+        <a class="btn-outline" href="#services">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <p class="section-label">What we offer</p>
+    <h2 class="section-title">Services & Pricing</h2>
+    <div class="services-grid">
+      <div class="svc">
+        <div class="svc-icon">💅</div>
+        <h3>Classic Manicure</h3>
+        <p>Shape, buff, cuticle care, and your choice of regular polish.</p>
+        <span class="svc-price">From $22</span>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">✨</div>
+        <h3>Gel Manicure</h3>
+        <p>Long-lasting gel polish with LED cure. Chip-free for 2–3 weeks.</p>
+        <span class="svc-price">From $35</span>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🌸</div>
+        <h3>Dip Powder Nails</h3>
+        <p>Stronger than gel, no UV lamp, natural-looking finish.</p>
+        <span class="svc-price">From $48</span>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">💎</div>
+        <h3>Full Set Acrylics</h3>
+        <p>Custom length and shape with a full acrylic set and your color.</p>
+        <span class="svc-price">From $55</span>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🦶</div>
+        <h3>Classic Pedicure</h3>
+        <p>Soak, exfoliate, shape, and polish for feet that look and feel renewed.</p>
+        <span class="svc-price">From $38</span>
+      </div>
+      <div class="svc">
+        <div class="svc-icon">🌺</div>
+        <h3>Mani + Pedi Combo</h3>
+        <p>Full manicure and pedicure together. Our most popular booking.</p>
+        <span class="svc-price">From $65</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <div class="gallery-strip">
+    <div class="g1"></div>
+    <div class="g2"></div>
+    <div class="g3"></div>
+    <div class="g4"></div>
+    <div class="g5"></div>
+  </div>
+
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <h2>Our Nail Technicians</h2>
+    <p class="team-sub">Passionate · Precise · Creative</p>
+    <div class="team-grid">
+      <div class="nail-tech">
+        <div class="nail-avatar">💅</div>
+        <h3>Tiffany L.</h3>
+        <span>Nail Artist · Acrylics</span>
+      </div>
+      <div class="nail-tech">
+        <div class="nail-avatar">✨</div>
+        <h3>Rosa M.</h3>
+        <span>Gel Specialist</span>
+      </div>
+      <div class="nail-tech">
+        <div class="nail-avatar">🌸</div>
+        <h3>Jamie K.</h3>
+        <span>Nail Art · Dip Powder</span>
+      </div>
+      <div class="nail-tech">
+        <div class="nail-avatar">💎</div>
+        <h3>Priya S.</h3>
+        <span>Classic & Pedicures</span>
+      </div>
+    </div>
+    <a class="btn-primary" href="https://chairmanagement.com/#/book?shop=SHOP_ID_PLACEHOLDER">Book Your Visit</a>
+  </section>
+
+  <!-- BOOK CTA -->
+  <section class="book-cta">
+    <h2>Reserve Your Seat Today</h2>
+    <p>Skip the walk-in wait. Book your appointment online in seconds<br />and arrive ready to relax.</p>
+    <a class="btn-cream" href="https://chairmanagement.com/#/book?shop=SHOP_ID_PLACEHOLDER">Book Online Now</a>
+  </section>
+
+  <!-- INFO -->
+  <section class="info" id="info">
+    <div class="info-grid">
+      <div>
+        <h3>Hours</h3>
+        <ul>
+          <li>Monday – Friday &nbsp;·&nbsp; 10 AM – 7 PM</li>
+          <li>Saturday &nbsp;·&nbsp; 9 AM – 6 PM</li>
+          <li>Sunday &nbsp;·&nbsp; 11 AM – 4 PM</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Location</h3>
+        <p>7712 W North Ave<br />Wauwatosa, WI 53213<br /><br />Free parking lot behind the building.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>(414) 555-0347<br />hello@luxenaillounge.com<br /><br />@luxenaillounge on Instagram</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Luxe Nail Lounge · Wauwatosa, WI</p>
+    <a class="staff-link" href="https://chairmanagement.com/#/login">Staff Login</a>
+  </footer>
+
+</body>
+</html>
